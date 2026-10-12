@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "CalvoShot",
+  "version": "1.3.4",
+  "description": "Imagens e GIFs nos chats da Kick, Twitch e YouTube",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "host_permissions": [
+    "https://catbox.moe/*",
+    "https://api.giphy.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://kick.com/*",
+        "https://www.twitch.tv/*",
+        "https://twitch.tv/*"
+      ],
+      "js": [
+        "media-codes.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "world": "ISOLATED"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/live_chat*",
+        "https://youtube.com/live_chat*"
+      ],
+      "js": [
+        "media-codes.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "world": "ISOLATED"
+    }
+  ],
+  "action": {
+    "default_title": "CalvoShot — informações e privacidade",
+    "default_popup": "about.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
